@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "playwright": "^1.47.0"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^11.0.1",
+    "@playwright/test": "^1.47.2",
+    "@types/node": "^20.14.10",
+    "allure-commandline": "^2.30.0",
+    "allure-playwright": "^3.0.0-beta.11"
+  },
+  "scripts": {
+    "fulltest": "npx playwright test",
+    "smoke": "npx playwright test --grep @smoke",
+    "general": "npx playwright test --grep @general",
+    "regression": "npx playwright test --grep @regression",
+    "api": "npx playwright test --grep @api",
+    "pom": "npx playwright test --grep @pom",
+    "pom1": "npx playwright test --grep @pom1",
+    "pom2": "npx playwright test --grep @pom2",
+    "allure:generate": "npx allure generate allure-results -o allure-results --clean",
+    "allure:open": "npx allure serve allure-results"
+  }
+}
