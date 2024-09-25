@@ -27,21 +27,26 @@ class DashboardPage {
 
     async searchProductAndAddToCart(productName) {
 
+        let success = false
         await this.products.first().waitFor()
         const countOfTheProducts = await this.products.count()
         for (let i=0;i<countOfTheProducts;i++) {
             const productText = await this.products.nth(i).locator("b").textContent()
             if (productText === productName) {
                 await this.products.nth(i).getByRole('button', {name: " Add To Cart"}).click()
+                success = true
                 break;
             }
         }
         await this.addToCartSuccessMessage.waitFor()
+        return success
 
     }
 
     async searchAndAddMultipleProductsToCart(multipleProducts) {
 
+        let success = false
+        let countFound = 0
         for (let product of multipleProducts) {
             await this.products.first().waitFor()
             const countOfTheProducts = await this.products.count()
@@ -49,27 +54,35 @@ class DashboardPage {
                 const productText = await this.products.nth(i).locator("b").textContent()
                 if (productText === product) {
                     await this.products.nth(i).getByRole('button', {name: " Add To Cart"}).click()
+                    countFound++
                     break;
                 }
             }
             await this.addToCartSuccessMessage.waitFor()
             await this.page.waitForTimeout(2000)
         }
+        if (countFound === multipleProducts.length) {
+            success = true
+        }
+        return success
 
     }
 
     async searchProductAndViewDetails(productName) {
 
+        let found = false
         await this.products.first().waitFor()
         const countOfTheProducts = await this.products.count()
         for (let i=0;i<countOfTheProducts;i++) {
             const productText = await this.products.nth(i).locator("b").textContent()
             if (productText === productName) {
                 await this.products.nth(i).getByRole('button', {name: " View"}).click()
+                found = true
                 break;
             }
         }
         await this.viewPageProductName.waitFor()
+        return found
 
     }
 
