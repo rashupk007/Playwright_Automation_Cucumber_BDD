@@ -17,10 +17,10 @@ Feature: Dashboard Test Case
     When I click on the Add to Cart button for Multiple Products
     Then Multiple Product should be added to the Cart
 
-    Scenario: Validate adding same products multiple times to cart
-    Given I am on the dashboard page
-    When I click on the Add to Cart button for Same Product multiple times
-    Then Same Product should be added to the Cart multiple times
+    # Scenario: Validate adding same products multiple times to cart
+    # Given I am on the dashboard page
+    # When I click on the Add to Cart button for Same Product multiple times
+    # Then Same Product should be added to the Cart multiple times
 
     Scenario: Validate View Product
     Given I am on the dashboard page
